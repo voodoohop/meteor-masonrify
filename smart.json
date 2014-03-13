@@ -3,7 +3,7 @@
       "description": "Easily add Masonry-style dynamic layouts to Meteor. Depends on the new Blaze UI.",
       "homepage": "https://github.com/voodoohop/meteor-masonrify",
       "author": "Thomas Haferlach <thomas@voodoohop.com> (http://voodoohop.com)",
-      "version": "0.1.0",
+      "version": "0.0.1",
       "git": "https://github.com/voodoohop/meteor-masonrify.git",
       "packages": {
       }
