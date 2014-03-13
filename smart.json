@@ -1,5 +1,5 @@
   {
-      "name": "masonriy",
+      "name": "masonrify",
       "description": "Easily add Masonry-style dynamic layouts to Meteor. Depends on the new Blaze UI.",
       "homepage": "https://github.com/voodoohop/meteor-masonrify",
       "author": "Thomas Haferlach <thomas@voodoohop.com> (http://voodoohop.com)",
