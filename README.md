@@ -12,7 +12,8 @@ $ mrt add masonrify
 ```
 
 The container div is created using the #masonryContainer block helper. For each masonry instance you wish to use define one id for the container, e.g. id="MasonryContainer".
-Pass options directly to packery (http://packery.metafizzy.co/options.html)
+
+You can pass options directly to packery (http://packery.metafizzy.co/options.html). It is a good idea to define the columnWidth here for example.
 
 ```html
       {{#masonryContainer columnWidth=115 transitionDuration="0.1s" id="MasonryContainer" }}
