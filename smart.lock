@@ -1,0 +1,15 @@
+{
+  "meteor": {},
+  "dependencies": {
+    "basePackages": {
+      "masonrify": {
+        "path": "."
+      }
+    },
+    "packages": {
+      "masonrify": {
+        "path": "."
+      }
+    }
+  }
+}
