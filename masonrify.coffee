@@ -4,9 +4,8 @@ class Masonrify
   @instances= {}
 
   constructor: (container, options) ->
-    options = _.extend({itemSelector: ".masonry_element", stamp: ".stamped"}, options)
-    console.log("instantiating packery with options", options)
-    @_ms = new Packery(container, options)
+    options = _.extend({itemSelector: ".masonry_element", stamp: ".stamped", masonry: options}, options)
+    @_ms = new Isotope(container, options)
 
   addItems: (items) -> @_ms.addItems(items)
   appended: (div) -> @_ms.appended(div)
@@ -45,13 +44,13 @@ Meteor.startup ->
     Masonrify.instances[this.data.id] = new Masonrify(this.firstNode, this.data)
 
   Template.masonryContainer.masonryContainerId = ->
-      console.log("got masonry cont id", this.id)
+      #console.log("got masonry cont id", this.id)
       this.id
   Template.masonryElement.setContainerId = (arg1,arg2) ->
-    console.log("setContainerId", this, arg1,arg2)
+    #console.log("setContainerId", this, arg1,arg2)
     return null
   Template.masonryElement.rendered = (arg1, arg2) ->
-    console.log("masonryElement rendered", this)
+    #console.log("masonryElement rendered", this)
     contId = getContainerId(this.data)
     element = this.firstNode
     Masonrify.instances[contId]?.appended(element)
@@ -59,4 +58,4 @@ Meteor.startup ->
 
 
   Template.masonryElement.destroyed = ->
-    Masonrify.instances[this.data]?.debouncedRelayout(true)
+    Masonrify.instances[getContainerId(this.data)]?.debouncedRelayout(true)
