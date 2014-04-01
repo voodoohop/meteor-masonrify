@@ -6,14 +6,18 @@ class Masonrify
   constructor: (container, options) ->
     options = _.extend({itemSelector: ".masonry_element", stamp: ".stamped", masonry: options}, options)
     @_ms = new Isotope(container, options)
+    @_container = container
 
   addItems: (items) -> @_ms.addItems(items)
   appended: (div) -> @_ms.appended(div)
   refreshSize: (item) -> @_ms.fit(item)
-  debouncedRelayout: _.debounce( (reload=false) ->
+  debouncedRelayout: _.debounce( ->
+    console.log("masonry debounced")
     if (@_ms)
-      if (reload)
-        @_ms.reloadItems()
+      if (true)
+        console.log("masonry reloading and sorting original order")
+      #$(@_container).isotope( 'reloadItems' ).isotope({ sortBy: 'original-order' }).isotope('reLayout');
+      #@_ms.reloadItems()
       @_ms.layout()
   ,200)
 
@@ -54,6 +58,7 @@ Meteor.startup ->
     contId = getContainerId(this.data)
     element = this.firstNode
     Masonrify.instances[contId]?.appended(element)
+    #Masonrify.instances[contId]?.debouncedRelayout()
     imagesLoaded(this.firstNode, -> Masonrify.instances[contId]?.debouncedRelayout())
 
 
