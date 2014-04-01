@@ -3,7 +3,7 @@ meteor-masonrify
 
 Easily add Masonry-style dynamic layouts to Meteor. Depends on the new Blaze UI.
 
-Currently uses Packery as the layouting engine. Will probably move to isotope soon for added flexibility.
+Currently uses Isotope as the layouting engine.
 
 usage:
 
@@ -23,7 +23,7 @@ You can pass options directly to packery (http://packery.metafizzy.co/options.ht
 
 Use the {{#masonryElement}} block helper to create the individual elements to be layouted. Pass the id previously defined...
 
-      {{#masonryContainer columnWidth=115 transitionDuration="0.1s" id="MasonryContainer" }}
+      {{#masonryContainer columnWidth=115 transitionDuration="0.1s" gutter=2 id="MasonryContainer" }}
          {{#each exampleContentCollection}}
            {{#masonryElement "MasonryContainer"}}
              ... content ...
