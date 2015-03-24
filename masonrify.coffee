@@ -15,7 +15,7 @@ class Masonrify
     #console.log("masonry debounced")
     if (@_ms)
       if (true)
-        console.log("masonry reloading and sorting original order")
+        #console.log("masonry reloading and sorting original order")
       #$(@_container).isotope( 'reloadItems' ).isotope({ sortBy: 'original-order' }).isotope('reLayout');
       #@_ms.reloadItems()
       @_ms.layout()
