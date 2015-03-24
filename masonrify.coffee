@@ -12,7 +12,7 @@ class Masonrify
   appended: (div) -> @_ms.appended(div)
   refreshSize: (item) -> @_ms.fit(item)
   debouncedRelayout: _.debounce( ->
-    console.log("masonry debounced")
+    #console.log("masonry debounced")
     if (@_ms)
       if (true)
         console.log("masonry reloading and sorting original order")
