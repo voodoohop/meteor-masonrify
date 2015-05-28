@@ -11,10 +11,10 @@ class Masonrify
   addItems: (items) -> @_ms.addItems(items)
   appended: (div) -> @_ms.appended(div)
   refreshSize: (item) -> @_ms.fit(item)
-  debouncedRelayout: _.debounce( ->
+  debouncedRelayout: _.debounce( ()->
     #console.log("masonry debounced")
     if (@_ms)
-      if (true)
+      #if (true)
         #console.log("masonry reloading and sorting original order")
       #$(@_container).isotope( 'reloadItems' ).isotope({ sortBy: 'original-order' }).isotope('reLayout');
       #@_ms.reloadItems()
@@ -40,27 +40,27 @@ class Masonrify
     @_ms.off(event, callback)
 
 
-Meteor.startup ->
-  getContainerId = (data) -> data.container ? data
+#Meteor.startup ->
+getContainerId = (data) -> data.container ? data
+
+Template.masonryContainer.rendered = ->
+  #console.log(this.data)
+  Masonrify.instances[this.data.id] = new Masonrify(this.firstNode, this.data)
+
+Template.masonryContainer.masonryContainerId = ->
+    #console.log("got masonry cont id", this.id)
+    this.id
+Template.masonryElement.setContainerId = (arg1,arg2) ->
+  #console.log("setContainerId", this, arg1,arg2)
+  return null
+Template.masonryElement.rendered = (arg1, arg2) ->
+  #console.log("masonryElement rendered", this)
+  contId = getContainerId(this.data)
+  element = this.firstNode
+  Masonrify.instances[contId]?.appended(element)
+  #Masonrify.instances[contId]?.debouncedRelayout()
+  imagesLoaded(this.firstNode, -> Masonrify.instances[contId]?.debouncedRelayout())
 
 
-  Template.masonryContainer.rendered = ->
-    Masonrify.instances[this.data.id] = new Masonrify(this.firstNode, this.data)
-
-  Template.masonryContainer.masonryContainerId = ->
-      #console.log("got masonry cont id", this.id)
-      this.id
-  Template.masonryElement.setContainerId = (arg1,arg2) ->
-    #console.log("setContainerId", this, arg1,arg2)
-    return null
-  Template.masonryElement.rendered = (arg1, arg2) ->
-    #console.log("masonryElement rendered", this)
-    contId = getContainerId(this.data)
-    element = this.firstNode
-    Masonrify.instances[contId]?.appended(element)
-    #Masonrify.instances[contId]?.debouncedRelayout()
-    imagesLoaded(this.firstNode, -> Masonrify.instances[contId]?.debouncedRelayout())
-
-
-  Template.masonryElement.destroyed = ->
+Template.masonryElement.destroyed = ->
     Masonrify.instances[getContainerId(this.data)]?.debouncedRelayout(true)
