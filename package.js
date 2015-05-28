@@ -1,5 +1,8 @@
 Package.describe({
+  name: "voodoohop:masonrify",
   summary: "Easy Masonry Style Layouts using Packery and Blaze UI"
+  version: "0.0.2"
+  git: "https://github.com/voodoohop/meteor-masonrify.git"
 });
 
 Package.on_use(function (api) {
