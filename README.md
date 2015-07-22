@@ -8,7 +8,7 @@ Currently uses Isotope as the layouting engine.
 usage:
 
 ```sh
-$ mrt add masonrify
+$ meteor add voodoohop:masonrify
 ```
 
 The container div is created using the #masonryContainer block helper. For each masonry instance you wish to use define one id for the container, e.g. id="MasonryContainer".
@@ -30,5 +30,3 @@ Use the {{#masonryElement}} block helper to create the individual elements to be
            {{/masonryElement}}
          {{/each}}
       {{/masonryContainer}}
-
-
